@@ -6,7 +6,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:admin:dev": "ng build onboarding-admin --configuration=development",
+    "build:admin:prod": "ng build onboarding-admin --configuration=production",
+    "build:web:dev": "ng build onboarding-web --configuration=development",
+    "build:web:prod": "ng build onboarding-web --configuration=production"
   },
   "private": true,
   "dependencies": {
@@ -17,6 +21,8 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
+    "bootstrap": "^5.3.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -32,6 +38,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^19.2.0",
     "typescript": "~5.7.2"
   }
 }

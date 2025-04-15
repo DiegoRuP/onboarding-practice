@@ -1,0 +1,19 @@
+<!-- Botón para mostrar/ocultar el sidebar en pantallas pequeñas -->
+<button class="btn btn-primary d-lg-none mb-2" (click)="isCollapsed = !isCollapsed">
+    Menú
+  </button>
+  
+  <!-- Contenedor colapsable del sidebar -->
+  <div [ngbCollapse]="isCollapsed" class="d-lg-block">
+    <div class="d-flex flex-column p-3 bg-light" style="width: 200px; min-height: 100vh;">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li *ngFor="let item of menuItems" class="nav-item">
+          <a class="nav-link link-dark" [routerLink]="item.route">
+            <!-- Si se define un icono, se muestra junto al label -->
+            <i *ngIf="item.icon" class="{{ item.icon }} me-2"></i>{{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

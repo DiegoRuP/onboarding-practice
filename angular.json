@@ -3,41 +3,61 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "onboarding": {
+    "onboarding-admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "less"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/onboarding-admin",
+      "sourceRoot": "projects/onboarding-admin/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/onboarding",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "outputPath": "dist/onboarding-admin",
+            "index": "projects/onboarding-admin/src/index.html",
+            "browser": "projects/onboarding-admin/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "projects/onboarding-admin/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "assets/global"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/onboarding-admin/public",
+                "output": "assets/admin"
               }
             ],
             "styles": [
-              "src/styles.less"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/onboarding-admin/src/styles.less"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/onboarding-admin/src/environments/environment.ts",
+                  "with": "projects/onboarding-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "dist/production/onboarding-admin",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -49,25 +69,24 @@
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
+              "outputPath": "dist/development/onboarding-admin",
               "optimization": false,
-              "extractLicenses": false,
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "onboarding:build:production"
+              "buildTarget": "onboarding-admin:build:production"
             },
             "development": {
-              "buildTarget": "onboarding:build:development"
+              "buildTarget": "onboarding-admin:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,21 +101,185 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "projects/onboarding-admin/tsconfig.spec.json",
             "inlineStyleLanguage": "less",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "assets/global"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/onboarding-admin/public",
+                "output": "assets/admin"
               }
             ],
             "styles": [
-              "src/styles.less"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/onboarding-admin/src/styles.less"
             ],
             "scripts": []
           }
         }
       }
+    },
+    "onboarding-web": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "projects/onboarding-web",
+      "sourceRoot": "projects/onboarding-web/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/onboarding-web",
+            "index": "projects/onboarding-web/src/index.html",
+            "browser": "projects/onboarding-web/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/onboarding-web/tsconfig.app.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": "assets/global"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/onboarding-web/public",
+                "output": "assets/web"
+              }
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/onboarding-web/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/onboarding-web/src/environments/environment.ts",
+                  "with": "projects/onboarding-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "dist/production/onboarding-web",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ]
+            },
+            "development": {
+              "outputPath": "dist/development/onboarding-web",
+              "optimization": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "onboarding-web:build:production"
+            },
+            "development": {
+              "buildTarget": "onboarding-web:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/onboarding-web/tsconfig.spec.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": "assets/global"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/onboarding-web/public",
+                "output": "assets/web"
+              }
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/onboarding-web/src/styles.less"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "onboarding-common": {
+      "projectType": "library",
+      "root": "projects/onboarding-common",
+      "sourceRoot": "projects/onboarding-common/src",
+      "prefix": "onboarding-common",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/onboarding-common/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/onboarding-common/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/onboarding-common/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/onboarding-common/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "analytics": "e5eabfca-30aa-4385-a3c2-5deade011fca"
   }
 }

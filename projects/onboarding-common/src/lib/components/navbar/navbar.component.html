@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Onboarding</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarContent" aria-controls="navbarContent" 
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Aquí puedes agregar otros items de navegación -->
+        </ul>
+        <div *ngIf="user" class="d-flex align-items-center">
+          <!-- Muestra el avatar si está definido -->
+          <img *ngIf="user.avatarUrl" [src]="user.avatarUrl" alt="{{ user.name }}" 
+               class="rounded-circle me-2" width="40" height="40">
+          <div class="text-end">
+            <div class="fw-bold">{{ user.name }}</div>
+            <small class="text-muted">{{ user.email }}</small>
+          </div>
+          <div ngbDropdown class="ms-3">
+            <button class="btn btn-outline-secondary dropdown-toggle" ngbDropdownToggle>
+              Opciones
+            </button>
+            <div ngbDropdownMenu>
+              <button ngbDropdownItem>Perfil</button>
+              <button ngbDropdownItem>Cerrar sesión</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

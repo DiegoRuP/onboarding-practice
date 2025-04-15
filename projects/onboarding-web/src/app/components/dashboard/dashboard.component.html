@@ -1,0 +1,27 @@
+<onboarding-common-navbar [user]="webUser"></onboarding-common-navbar>
+
+<div class="d-flex">
+  <onboarding-common-sidebar [menuItems]="webMenuItems"></onboarding-common-sidebar>
+  
+
+  <div class="d-flex flex-column">
+    <div class="container mt-3">
+      <h1>Dashboard - Web</h1>
+      <p>Contenido específico para la parte web de la aplicación.</p>
+      <!-- Ejemplo de listado de contenidos -->
+      <div *ngFor="let item of contents">
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.body }}</p>
+      </div>
+    </div>
+    <div class="d-flex flex-column">
+      <div class="mb-3 w-100">
+        <img class="w-100" src="assets/global/global.webp" alt="Logo Global" >
+      </div>
+      <!-- Imagen específica de admin -->
+      <div class="mb-3 w-100">
+        <img class="w-100" src="assets/web/web.webp" alt="Banner Admin" >
+      </div>
+    </div>
+  </div>
+</div>
