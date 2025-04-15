@@ -6,3 +6,4 @@ export * from './lib/onboarding-common.service';
 export * from './lib/onboarding-common.component';
 export * from './lib/components/navbar/navbar.component';
 export * from './lib/components/sidebar/sidebar.component';
+export * from './lib/components/shared-login/shared-login.component';
