@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent, SidebarComponent } from 'onboarding-common';
+import { NavbarComponent, SidebarComponent, LocalStorageService } from 'onboarding-common';
 import { ContentService } from '../../services/content.service';
 import { LoggingService } from 'onboarding-common/lib/services/logging.service';
 import { Content } from 'onboarding-common/lib/models/content.model';
@@ -31,10 +31,15 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private contentService: ContentService,
-    private loggingService: LoggingService
+    private loggingService: LoggingService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
+
+    const token = this.localStorageService.get('Token');
+    console.log('Token - Web:', token);
+
     this.contentService.getContent().subscribe((data) => {
       this.contents = data;
       this.loggingService.log('Contenido cargado en el dashboard web');

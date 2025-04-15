@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../../models/user.model';
-
+import { LocalStorageService } from '../../services/local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'onboarding-common-navbar',
@@ -13,4 +14,11 @@ import { User } from '../../models/user.model';
 })
 export class NavbarComponent {
   @Input() user?: User;
+
+  constructor(private localStorageService: LocalStorageService, private router: Router) {}
+
+  logout(): void {
+    this.localStorageService.remove('Token');
+    this.router.navigate(['/login']);
+  }
 }

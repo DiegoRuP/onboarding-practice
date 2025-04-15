@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedLoginComponent } from 'onboarding-common';
+import { SharedLoginComponent, LocalStorageService } from 'onboarding-common';
 
 @Component({
   selector: 'app-login-admin',
@@ -9,11 +9,11 @@ import { SharedLoginComponent } from 'onboarding-common';
   styleUrl: './login-admin.component.less'
 })
 export class LoginAdminComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private localStorageService: LocalStorageService) {}
 
   onLogin(event: { username: string; password: string }) {
     console.log('Login event:', event);
-    localStorage.setItem('Token', 'fake-token-admin');
+    this.localStorageService.set('Token', 'fake-token-admin');
     this.router.navigate(['/dashboard']);
   }
 }
