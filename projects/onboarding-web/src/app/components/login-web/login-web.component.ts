@@ -12,9 +12,13 @@ import { SharedLoginComponent, LocalStorageService } from 'onboarding-common';
 export class LoginWebComponent {
   constructor(private router: Router, private localStorageService: LocalStorageService) {}
 
-  onLogin(event: { username: string; password: string }) {
-    console.log('Login event:', event);
-    this.localStorageService.set('Token', 'fake-token-web');
-    this.router.navigate(['/dashboard']);
+  onLogin(event: { username: string; password: string; age?: number }) {
+    if (event.age && event.age >= 18) {
+      this.localStorageService.set('Token', 'user-token');
+      this.router.navigate(['/dashboard']);
+    } else {
+      alert('Debes ser mayor de edad para continuar.');
+    }
   }
+  
 }

@@ -1,11 +1,28 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  
     <div class="form-group">
       <label for="user">Username</label>
-      <input type="text" class="form-control" id="user" formControlName="username" placeholder="Enter username">
+      <input type="text" class="form-control" id="user" formControlName="username" placeholder="Enter username" required="true">
+      <small class="text-danger" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.errors?.['required']">
+        Username is required.
+      </small>
     </div>
+
     <div class="form-group">
       <label for="pass">Password</label>
-      <input type="password" class="form-control" id="pass" formControlName="password" placeholder="Password">
+      <input type="password" class="form-control" id="pass" formControlName="password" placeholder="Password" required="true">
+      <small class="text-danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+        Password is required.
+      </small>
     </div>
+
+    <div *ngIf="showAdultCheck" class="form-group">
+      <label for="age">Edad</label>
+      <input type="number" class="form-control" id="age" formControlName="age" placeholder="Edad" min="12" max="99">
+      <small class="text-danger" *ngIf="loginForm.get('age')?.touched && loginForm.get('age')?.errors?.['notAdult']">
+        Debes ser mayor de edad.
+      </small>
+    </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

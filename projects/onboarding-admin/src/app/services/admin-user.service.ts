@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminUserService {
-  // Simula la obtención de datos del usuario admin
+
   getAdminUser(): Observable<User> {
     const admin: User = {
       id: 1,

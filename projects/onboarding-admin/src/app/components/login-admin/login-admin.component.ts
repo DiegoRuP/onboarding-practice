@@ -12,8 +12,11 @@ export class LoginAdminComponent {
   constructor(private router: Router, private localStorageService: LocalStorageService) {}
 
   onLogin(event: { username: string; password: string }) {
-    console.log('Login event:', event);
-    this.localStorageService.set('Token', 'fake-token-admin');
-    this.router.navigate(['/dashboard']);
+    if (event.username.includes('ad')) {
+      this.localStorageService.set('Token', 'admin-token');
+      this.router.navigate(['/dashboard']);
+    } else {
+      alert('Acceso restringido solo para administradores.');
+    }
   }
 }

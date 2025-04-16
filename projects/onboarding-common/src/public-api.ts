@@ -11,3 +11,6 @@ export * from './lib/components/shared-login/shared-login.component';
 
 export * from './lib/services/local-storage.service';
 export * from './lib/services/logging.service';
+
+export * from './lib/guards/auth.guard';
+export * from './lib/guards/no-auth.guard';
