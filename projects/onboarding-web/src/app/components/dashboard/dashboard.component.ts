@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent, SidebarComponent, LocalStorageService } from 'onboarding-common';
-import { ContentService } from '../../services/content.service';
-import { LoggingService } from 'onboarding-common/lib/services/logging.service';
 import { Content } from 'onboarding-common/lib/models/content.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, SidebarComponent],
+  imports: [CommonModule, NavbarComponent, SidebarComponent, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less']
 })
@@ -22,16 +21,14 @@ export class DashboardComponent implements OnInit {
   };
 
   webMenuItems = [
-    { label: 'Inicio', route: '/inicio', icon: 'bi bi-house' },
-    { label: 'Perfil', route: '/perfil', icon: 'bi bi-person' },
-    { label: 'Ajustes', route: '/ajustes', icon: 'bi bi-gear' }
+    { label: 'Inicio', route: '/dashboard/home', icon: 'bi bi-house' },
+    { label: 'Perfil', route: '/dashboard/profile', icon: 'bi bi-person' },
+    { label: 'Ajustes', route: '/dashboard/settings', icon: 'bi bi-gear' }
   ];
 
   contents: Content[] = [];
 
   constructor(
-    private contentService: ContentService,
-    private loggingService: LoggingService,
     private localStorageService: LocalStorageService
   ) {}
 
@@ -40,9 +37,5 @@ export class DashboardComponent implements OnInit {
     const token = this.localStorageService.get('Token');
     console.log('Token - Web:', token);
 
-    this.contentService.getContent().subscribe((data) => {
-      this.contents = data;
-      this.loggingService.log('Contenido cargado en el dashboard web');
-    });
   }
 }

@@ -1,24 +1,8 @@
 <onboarding-common-navbar [user]="adminUser"></onboarding-common-navbar>
 
-<div class="d-flex">
+<div class="d-flex flex-grow-1">
   <onboarding-common-sidebar [menuItems]="adminMenuItems"></onboarding-common-sidebar>
-  <div class="f-flex">
-    <div class="container mt-3">
-      <h1>Dashboard - Admin</h1>
-      <p>Bienvenido, esta área es exclusiva para usuarios administrativos.</p>
-    </div>
-    <br>
-  
-    <div class="d-flex flex-column">
-      <div class="mb-3 w-100">
-        <img class="w-100" src="assets/global/global.webp" alt="Logo Global" >
-      </div>
-      <!-- Imagen específica de admin -->
-      <div class="mb-3 w-100">
-        <img class="w-100" src="assets/admin/admin.webp" alt="Banner Admin" >
-      </div>
-    </div>
+  <div class="flex-grow-1">
+    <router-outlet></router-outlet>
   </div>
-  
-  
 </div>

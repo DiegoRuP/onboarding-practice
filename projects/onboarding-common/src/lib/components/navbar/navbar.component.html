@@ -23,7 +23,7 @@
               Opciones
             </button>
             <div ngbDropdownMenu>
-              <button ngbDropdownItem>Perfil</button>
+              <button ngbDropdownItem (click)="navigateToProfile()">Perfil</button>
               <button ngbDropdownItem (click)="logout()">Cerrar sesión</button>
             </div>
           </div>

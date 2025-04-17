@@ -21,4 +21,8 @@ export class NavbarComponent {
     this.localStorageService.remove('Token');
     this.router.navigate(['/login']);
   }
+
+  navigateToProfile(): void {
+    this.router.navigate(['/dashboard/profile']);
+  }
 }

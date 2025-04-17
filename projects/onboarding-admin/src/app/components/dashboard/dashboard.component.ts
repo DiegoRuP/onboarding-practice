@@ -4,11 +4,12 @@ import { NavbarComponent, SidebarComponent, LocalStorageService} from 'onboardin
 import { AdminUserService } from '../../services/admin-user.service';
 import { LoggingService } from 'onboarding-common/lib/services/logging.service';
 import { User } from 'onboarding-common/lib/models/user.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, SidebarComponent],
+  imports: [CommonModule, NavbarComponent, SidebarComponent, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less']
 })
@@ -16,9 +17,9 @@ export class DashboardComponent implements OnInit {
   // Propiedades para el Navbar y el Sidebar
   adminUser!: User;
   adminMenuItems = [
-    { label: 'Dashboard', route: '/dashboard', icon: 'bi bi-house' },
-    { label: 'Usuarios', route: '/usuarios', icon: 'bi bi-people' },
-    { label: 'Configuración', route: '/configuracion', icon: 'bi bi-gear' }
+    { label: 'Inicio', route: '/dashboard/home', icon: 'bi bi-house' },
+    { label: 'Perfil', route: '/dashboard/profile', icon: 'bi bi-person' },
+    { label: 'Ajustes', route: '/dashboard/settings', icon: 'bi bi-gear' }
   ];
 
   constructor(
